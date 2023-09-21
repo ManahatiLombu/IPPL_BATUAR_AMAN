@@ -88,7 +88,7 @@ class HomePage extends StatelessWidget {
               children: [
                 Container(
                   width: 334,
-                  height: 215, // Meningkatkan tinggi kontainer untuk menampung teks dan alamat
+                  height: 215, 
                   decoration: BoxDecoration(
                     color: const Color.fromARGB(255, 70, 100, 70).withOpacity(0.8),
                     borderRadius: BorderRadius.circular(14),
@@ -225,7 +225,6 @@ class CustomSearch extends SearchDelegate<String> {
 
   @override
   List<Widget> buildActions(BuildContext context) {
-    // Action di sebelah kanan field pencarian (e.g., tombol "Clear")
     return [
       IconButton(
         icon: Icon(Icons.clear),
@@ -238,7 +237,6 @@ class CustomSearch extends SearchDelegate<String> {
 
   @override
   Widget buildLeading(BuildContext context) {
-    // Action di sebelah kiri field pencarian (e.g., tombol "Back")
     return IconButton(
       icon: Icon(Icons.arrow_back),
       onPressed: () {
@@ -249,7 +247,6 @@ class CustomSearch extends SearchDelegate<String> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    // Daftar saran pencarian
     final List<String> suggestions = myList
         .where((item) => item.toLowerCase().contains(query.toLowerCase()))
         .toList();
@@ -270,7 +267,6 @@ class CustomSearch extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-    // Hasil pencarian aktual
     final List<String> results = myList
         .where((item) => item.toLowerCase().contains(query.toLowerCase()))
         .toList();
