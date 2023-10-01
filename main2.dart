@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'KRB.dart';
-import 'Peta.dart';
+import 'Peta.dart'; 
+import 'Peta1.dart';
+import 'Peta2.dart';
+import 'Peta3.dart';
 
 void main() {
   runApp(MyApp());
@@ -127,6 +130,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
+//Halaman tempat Wisata
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -236,9 +240,8 @@ class HomePage extends StatelessWidget {
   }
 }
 
+//Halaman Pencarian
 class SecondPage extends StatelessWidget {
-  bool showMap = false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -273,6 +276,11 @@ class SecondPage extends StatelessWidget {
             children: [
               Positioned(
                 top: 40.0,
+                  child: InkWell(
+                   onTap: () {   
+                  Navigator.push( context, MaterialPageRoute(builder: (context) => KrbGedungInformasi()), 
+                  );
+                },
                 child: Column(
                   children: [
                     Container(
@@ -308,8 +316,14 @@ class SecondPage extends StatelessWidget {
                   ],
                 ),
               ),
+            ),
               Positioned(
                 top: 150.0,
+                child: InkWell(
+                   onTap: () {   
+                  Navigator.push( context, MaterialPageRoute(builder: (context) => KrbRuangTerbuka()), 
+                  );
+                },
                 child: Column(
                   children: [
                     Container(
@@ -345,8 +359,14 @@ class SecondPage extends StatelessWidget {
                   ],
                 ),
               ),
+            ),
               Positioned(
                 top: 260.0,
+                child: InkWell(
+                   onTap: () {   
+                  Navigator.push( context, MaterialPageRoute(builder: (context) => KrbLamin()), 
+                  );
+                },
                 child: Column(
                   children: [
                     Container(
@@ -382,9 +402,10 @@ class SecondPage extends StatelessWidget {
                   ],
                 ),
               ),
+            ),
               Positioned(
                 bottom: 80.0,
-                right: 10.0,
+                right: 20.0,
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pushNamed('/PetaKRB');
@@ -393,7 +414,7 @@ class SecondPage extends StatelessWidget {
                     padding: EdgeInsets.symmetric(
                         horizontal: 20,
                         vertical: 20), 
-                    backgroundColor: Colors.grey, 
+                    backgroundColor: Color.fromARGB(255, 212, 212, 212), 
                     textStyle: TextStyle(fontSize: 18), 
                   ),
                   child: Image.asset('assets/lokasi.png',
@@ -462,7 +483,7 @@ class CustomSearch extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-    final List<String> results = myList
+   final List<String> results = myList
         .where((item) => item.toLowerCase().contains(query.toLowerCase()))
         .toList();
 
@@ -472,8 +493,13 @@ class CustomSearch extends SearchDelegate<String> {
         return ListTile(
           title: Text(results[index]),
           onTap: () {
-            query = results[index];
-            showResults(context);
+            // Tambahkan logika untuk membuka peta saat item ditekan
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Petakrb(), // Gantilah dengan nama halaman peta Anda
+              ),
+            );
           },
         );
       },
