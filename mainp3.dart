@@ -493,11 +493,10 @@ class CustomSearch extends SearchDelegate<String> {
         return ListTile(
           title: Text(results[index]),
           onTap: () {
-            // Tambahkan logika untuk membuka peta saat item ditekan
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => Petakrb(), // Gantilah dengan nama halaman peta Anda
+                builder: (context) => Petakrb(), 
               ),
             );
           },
