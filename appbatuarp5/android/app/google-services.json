@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "983108320310",
+    "project_id": "batuar-a7ee4",
+    "storage_bucket": "batuar-a7ee4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:983108320310:android:64e9c4ca4da67221c5ac97",
+        "android_client_info": {
+          "package_name": "com.example.aplikasitest1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDMwWUpBoPq-RWOOdPgVNavX7y-jEznyOo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
