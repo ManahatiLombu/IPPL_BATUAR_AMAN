@@ -46,7 +46,21 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final _usernameController = TextEditingController();
+  TextEditingController _usernameController = TextEditingController();
+  bool isButtonEnabled = false;
+
+@override
+void initState() {
+  super.initState();
+  _usernameController.addListener(_checkIfButtonShouldBeEnabled);
+}
+
+void _checkIfButtonShouldBeEnabled() {
+  setState(() {
+    isButtonEnabled = _usernameController.text.isNotEmpty;
+  });
+}
+
 
   @override
   void dispose() {
@@ -111,20 +125,23 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 SizedBox(height: 50.0),
+                
                 ElevatedButton(
-                  onPressed: () async {
-                    CollectionReference users =
-                        FirebaseFirestore.instance.collection('User');
-                    String username = _usernameController.text;
-                    QuerySnapshot existingUser =
-                        await users.where('nama', isEqualTo: username).get();
-                    if (existingUser.docs.isNotEmpty) {
-                      Navigator.of(context).pushReplacementNamed('/home');
-                    } else {
-                      users.add({'nama': username});
-                      Navigator.of(context).pushReplacementNamed('/home');
-                    }
-                  },
+                  onPressed: isButtonEnabled
+                      ? () async {
+                          CollectionReference users =
+                              FirebaseFirestore.instance.collection('User');
+                          String username = _usernameController.text;
+                          QuerySnapshot existingUser =
+                              await users.where('nama', isEqualTo: username).get();
+                          if (existingUser.docs.isNotEmpty) {
+                            Navigator.of(context).pushReplacementNamed('/home');
+                          } else {
+                            users.add({'nama': username});
+                            Navigator.of(context).pushReplacementNamed('/home');
+                          }
+                        }
+                      : null,
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
                         Color.fromARGB(255, 182, 153, 125)),
@@ -138,7 +155,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   child: Text('Masuk'),
-                )
+                ),
               ],
             ),
           ),
